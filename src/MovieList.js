@@ -2,9 +2,7 @@ import React, { useState, useRef } from "react";
 import Movie from "./Movie";
 
 export default function MovieList() {
-  const [movies, setMovies] = useState([
-    { id: 1, title: "First movie", rating: 3 },
-  ]);
+  const [movies, setMovies] = useState([]);
   const titleInputRef = useRef();
   const ratingInputRef = useRef();
   let send;
@@ -36,7 +34,13 @@ export default function MovieList() {
     // if validation is ok
     if (send) {
       // create new id for the new movie
-      const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
+      //const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
+      var newId = 1;
+      movies.forEach((movie) => {
+        if (movie.id >= newId) {
+          newId = movie.id + 1;
+        }
+      });
 
       // update list of movies
       setMovies([
@@ -94,7 +98,7 @@ export default function MovieList() {
     // update state
     setMovies(newMovies);
   }
-
+  console.log("Movies: ", movies);
   return (
     <div>
       <h3>Add movie</h3>

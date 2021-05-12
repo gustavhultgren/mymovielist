@@ -1,11 +1,18 @@
 import React from "react";
+import starImg from "./images/star.png";
 
 export default function Movie({ movie, deleteMovie }) {
   function getStars() {
     let stars = [];
     for (let i = 0; i < movie.rating; i++) {
       stars.push(
-        <img key={i} className="float-end" src="./images/star.png" alt="Star" />
+        <img
+          key={i}
+          style={{ width: "30px", marginRight: "5px" }}
+          className="float-end"
+          src={starImg}
+          alt="Star"
+        />
       );
     }
     return stars;
